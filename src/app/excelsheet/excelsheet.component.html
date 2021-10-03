@@ -1,0 +1,161 @@
+<div class="clear"></div>
+<div class="container-fluid  mar-top-10">
+  <div class="row">
+    <div class="col-md-12 ">
+      <h1>Preview File</h1>
+      </div>
+    
+    <div class="col-md-12">
+      
+    <div class="row">
+      <div class="col-md-8"></div>
+      <div class="col-md-2">
+        <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#popUpModal">Add</button>
+      </div>
+
+    </div>
+        <div class="table-header-color table-responsive top-space">
+          <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <th valign="top">File Name</th>
+                <th valign="top">File Type</th>
+                <th valign="top">Path</th>
+                <th valign="top">Last Modified On</th>
+                <th valign="top">Modified By</th>
+                <th valign="top">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let a of rowObj">
+                <td style="text-align:center">{{a.fileName}}</td>
+                <td style="text-align:center">{{a.fileType}}</td>
+                <td style="text-align:center">{{a.fileLocation}}</td>
+                <td style="text-align:center">{{a.fileLastModifiedOn}}</td>
+                <td style="text-align:center">{{a.fileModifiedBy}}</td>
+                <td style="text-align:center"><div class="col-sm-6 text-center">
+                  <button class="btn btn-primary" type="submit" (click)="getDetailForId(a.id)" data-toggle="modal" data-target="#popUpModalEdit" style=" padding:5px;">Edit</button>
+                  <button class="btn btn-primary" type="submit" (click)="deleteRow(a.id)" style=" padding:5px;" >Delete</button>
+              </div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+  </div>
+
+  
+
+
+
+  <div>
+    <div id="popUpModal" class="modal fade " tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title heading3 blue-c font-weight-bold"> <span><i class="fa fa-hand-o-right black"></i>
+              </span>Add fields</div>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-3 mar-bot">
+                <input type = "text" name = "fileName" placeholder = "File Name" [(ngModel)]="fileName">
+              </div>
+              <br>
+              <div class="col-md-3 mar-bot">
+                <input type = "text" name = "fileType" placeholder = "File Type" [(ngModel)]="fileType">
+              </div>
+              <br>
+              <div class="col-md-3 mar-bot">
+                  <input type = "text" name = "fileLocation" placeholder = "Path" [(ngModel)]="fileLocation">
+                </div>
+                <br>
+                <div class="col-md-3 mar-bot">
+                    <input type = "text" name = "fileLastModifiedOn" placeholder = "Last Modified On" [(ngModel)]="fileLastModifiedOn">
+                  </div>
+                  <br>
+                  <div class="col-md-3 mar-bot">
+                      <input type = "text" name = "fileModifiedBy" placeholder = "Modified By" [(ngModel)]="fileModifiedBy">
+                       
+              </div>
+              <br>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary"  data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="onAddRow()" data-dismiss="modal">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div id="popUpModalEdit" class="modal fade " tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title heading3 blue-c font-weight-bold"> <span><i class="fa fa-hand-o-right black"></i>
+              </span>Update fields</div>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-3 mar-bot">
+                <input type = "text" name = "fileName" placeholder = "name" [(ngModel)]="fileName">
+              </div>
+              <br>
+              <div class="col-md-3 mar-bot">
+                <input type = "text" name = "fileType" placeholder = "fileType" [(ngModel)]="fileType">
+              </div>
+              <br>
+              <div class="col-md-3 mar-bot">
+                  <input type = "text" name = "fileLocation" placeholder = "fileLocation" [(ngModel)]="fileLocation">
+                </div>
+                <br>
+                <div class="col-md-3 mar-bot">
+                    <input type = "text" name = "fileLastModifiedOn" placeholder = "fileLastModifiedOn" [(ngModel)]="fileLastModifiedOn">
+                  </div>
+                  <br>
+                  <div class="col-md-3 mar-bot">
+                      <input type = "text" name = "fileModifiedBy" placeholder = "fileModifiedBy" [(ngModel)]="fileModifiedBy">
+                      <input type = "hidden" name = "id"  [(ngModel)]="id" >
+                       
+              </div>
+              <br>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="updateRow()" data-dismiss="modal">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class = "col-md-12 text-center">
+    <button class="btn btn-primary" type="submit" (click)="firstPage()">First Page</button>
+    <button class="btn btn-primary" type="submit" (click)="nextPage()">Next Page</button>
+    <button class="btn btn-primary" type="submit" (click)="previosPage()">Previous page</button>
+    <button class="btn btn-primary" type="submit" (click)="lastPage()">Last page</button>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="col-md-12 ">
+  <div>
+              <button class="btn btn-primary" [attr.disabled]="role == 'ROLE_READ' ? true : null" type="submit" (click)="saveIntoDatabase()">Save</button>
+  </div>
+</div>
+<br>
+<div class="col-md-12 ">
+  <div>
+              <button class="btn btn-primary" type="submit" (click)="logOut()">Logout</button>
+  </div>
+</div>
+</div>
